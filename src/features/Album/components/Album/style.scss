@@ -1,0 +1,18 @@
+.album{
+    &__img{
+        & > img{
+            width: 190px;
+            border-radius: 10px;
+        }
+    }
+    &__name{
+        font-weight: bold;
+        text-align: center;
+    }
+    &__owner{
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(7, 42, 238);
+    }
+}
