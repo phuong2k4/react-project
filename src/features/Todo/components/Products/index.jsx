@@ -1,20 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames'
+import './style.scss'
 
 Products.propTypes = {
-    todoList: PropTypes.array,
+    prod: PropTypes.array,
+    onProdClick: PropTypes.func
 };
 
-// Products.defaultProps = {
-//     todoList: [],
-// };
+Products.defaultProps = {
+    prod: [],
+    onProdClick:null
+};
 
-function Products({todoList}) {
+function Products({prod , onProdClick}) {
+    const prodclick = (todo,ind)=>{
+        if(!onProdClick){
+            return;
+        }
+        onProdClick(todo,ind);
+    }
     return (
         <div>
-            <ol>
-                {todoList.map(todo=>(
-                    <li key={todo.id}>Product: {todo.product} / Price: {todo.price}$</li>
+            <ol className='product-item'>
+                {prod.map((todo,ind)=>(
+                    <li 
+                    key={todo.id} 
+                    className={classnames({
+                        'product-item':true,
+                        remaining: todo.remaining==='sold out'})} 
+                    onClick={()=>prodclick(todo,ind)}>Product: {todo.product} / Price: {todo.price}$</li>
                 ))}
             </ol>
         </div>
