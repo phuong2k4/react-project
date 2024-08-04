@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Products from './components/Products';
+import Products from './components/Products/index.jsx';
 
 TodoFeatures.propTypes = {
     
 };
 
-function TodoFeatures({props}) {
-    const products = [
+function TodoFeatures() {
+    const initProducts = [
         {
             id: 1,
             product: 'pencil',
@@ -28,24 +28,46 @@ function TodoFeatures({props}) {
         }
     ]
 
-    const [productList, setProd] = useState(products)
+    const [productList, setProd] = useState(initProducts)
+    const [filteredStatus, setFilteredStatus] = useState('all')
 
-    const funcProdClick = (todo,ind)=>{
+    const funcProdClick = (todo,ind) => {
         const newprodlist = [...productList]
 
         newprodlist[ind] = {
             ...newprodlist[ind],
-            remaining: newprodlist[ind].remaining ==='stocking'? 'sold out' : 'stocking',
+            remaining: newprodlist[ind].remaining === 'stocking'? 'sold out' : 'stocking',
         }
-
         setProd(newprodlist)
-        console.log(todo,ind)
     }
+
+    const handleShowAll = () => {
+        setFilteredStatus('all')
+    }
+
+    const handleShowStocking = () => {
+        setFilteredStatus('stocking')
+    }
+
+    const handleShowSoldOut = () => {
+        setFilteredStatus('sold out')
+    }
+
+    const renderProd = productList.filter(item => filteredStatus === 'all' || filteredStatus === item.remaining)
+    console.log(renderProd)
+
     return (
         <div>
             <h3>Product List: </h3>
-            <Products prod={products} onProdClick={funcProdClick}/>
+            <Products prod={renderProd} onProdClick={funcProdClick}/>
+
+            <div>
+                <button onClick={handleShowAll}>Show All</button>
+                <button onClick={handleShowStocking}>Show Stocking</button>
+                <button onClick={handleShowSoldOut}>Show Sold out</button>
+            </div>
         </div>
+
     );
 }
 
