@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202124;
+}
+
+.title{
+    font-size: 80px;
+    font-family: "Jetbrains Mono";
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+input{
+    width: 584px;
+    height: 48px;
+    padding-left: 20px;
+    border: 1px solid white;
+    background-color: #202124;
+    border-radius: 25px;
+    color: white;
+}
+
+table{
+    margin-top: 50px;
+    color: white;
+    width: 700px;
+    height: 200px;
+}
+tbody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    border: 1px solid white;
+    padding: 15px;
+    border-radius: 10px;
+}
+tr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+    padding: 5px;
+}
+
+.td_title{
+    border: 1px solid white;
+    padding: 15px 25px;
+    border-radius: 10px;
+}
+
+.td_children{
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 15px 25px;
+}

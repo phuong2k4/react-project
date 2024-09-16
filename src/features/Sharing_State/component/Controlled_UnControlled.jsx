@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { foods, filterItems } from '../data.js';
+import "./Controlled_Uncontrolled.scss"
 
 export default function FilterableList() {
   const [query, setQuery] = useState('');
@@ -11,7 +12,6 @@ export default function FilterableList() {
   return (
     <>
       <SearchBar query={query} onChange={handleChange} />
-      <hr />
       <List items={result} />
     </>
   );
@@ -19,13 +19,17 @@ export default function FilterableList() {
 
 function SearchBar({query, onChange}) {
   return (
-    <label>
-      Search:{' '}
-      <input
-        value={query}
-        onChange={onChange}
-      />
-    </label>
+    <div className='container'>
+        <div className='title'>Search Bar</div>
+        <label>
+        <input
+            value={query}
+            onChange={onChange}
+            placeholder='Type something'
+        />
+        </label>
+    </div>
+    
   );
 }
 
@@ -35,8 +39,8 @@ function List({ items }) {
       <tbody>
         {items.map(food => (
           <tr key={food.id}>
-            <td>{food.title}</td>
-            <td>{food.children}</td>
+            <td className='td_title'>{food.title}</td>
+            <td className='td_children'>{food.children}</td>
           </tr>
         ))}
       </tbody>
