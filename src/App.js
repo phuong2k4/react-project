@@ -1,26 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect } from 'react';
-// import AlbumsMusic from './features/Album/index.jsx';
-// import TodoFeatures from './features/Todo/index.jsx';
 import RenderTimeAsString from './features/Clock_String/index.jsx';
-import productApi from './api/productApi.js';
-
+import factsApi from './api/factsApi.js';
+import HeaderPages from './components/HeaderPages/index.jsx';
+import Loading from './components/LoadingPages/index.jsx';
 
 function App() {
   useEffect(()=>{
-    const fetchProducts = async () => {
-      const params = {
-        _limit:10
+    const fetchFacts = async () => {
+      const param = {
+        _limit: 3
       }
-      const productList = await productApi.getAll(params)
-      console.log(productList);
+      const factsList = await factsApi.getAll(param)
+      console.log(factsList);
     }
-    fetchProducts()
+    fetchFacts();
   },[])
   return (
     <div className="App">
+      <HeaderPages />
       <RenderTimeAsString />
+      <Loading />
     </div>
   );
 }
